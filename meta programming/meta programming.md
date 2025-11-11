@@ -194,17 +194,31 @@ It's essentially doing:
 template<class T, class U = T>
 T exchange(T& obj, U&& new_value) {
     T old = std::move(obj);   // save old
+    /*
+	    Moves(or copies if T isn't movable) the current value  of obj into old. 
+		std::move simply casts obj to an rvalue ref(T&&)
+    */
     obj = std::forward<U>(new_value); // assign new
+    /*
+	    std::forward is a conditional move: 
+		    1. if new_value was originally a lvalue, it just pass it as an lvalue(no move)
+		    2. if it was an ravlue, it forwards it as an rvalue(move semantics)
+    */
     return old;               // give old value back
 }
 ```
-note: [move semantics](move%20semantics.md) and [perfect forwarding](perfect%20forward.md)
+`T` is the main type(the one to be mod). 
+`U` is the type of the new val we want to assign to it.
+`=T` gives `U` a default type argument of `T` .
+`T& obj`: a lvalue reference to obj whose value we’ll replace, so we directly mod the passed in var. 
+`U&& new_value`: a forwarding reference (universal reference). This can bind to both lvalues and rvalues — thanks to template type deduction.
+!`&&` we have here is not only a rvalue ref because `U` is a deduced template 
+note: [move semantics](move%20semantics.md) and [perfect forwarding](forward%20semantics.md)
 ## 4. Why Old Template Metaprogramming Still Matters
 - Type-level computations 
 	- constexpr returns value but template can return a type
 - Partial specialization
 	- compiler can only init the ones that match any of the template type conditions
-
 ## 5. Variadic Templates
 Templates that can take any number of parameters(compile time for loop)
 ### Example
@@ -214,3 +228,4 @@ constexpr auto sum(Args... args) {
     return (args + ...); // folding in cpp17: ((a1 + a2) + a3) + ... loop unrolling in type system
 }
 ```
+### variadic template parameter pack

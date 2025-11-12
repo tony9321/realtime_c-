@@ -62,3 +62,15 @@ Counter c1, c2; // each on its own cache line(separate 64byte boundary)
 w/out `alignas(64)`, both `c1` and `c2` might sit in one line. When thread 1 updates `c1.x`, it invalidates thread 2’s cache line for `c2.x`, causing massive slowdowns — called `false sharing`
 
 `Temporal locality` is like when I use this once I might use it again soon
+
+## SIMD(Single Instruction, Multiple Data)
+Replying more on compiler instead of our code
+CPU instructions that operate on many numbers at once (like add 4 floats at once)
+`_mm_add_ps` or compiler vectorization(`-O3, -march=native`)
+```cpp
+// Instead of looping over one price at a time:
+for (int i = 0; i < N; i++)
+    price[i] += drift;
+// SIMD can update 4–8 prices per instruction.
+```
+ex: When you process millions of price ticks or run Monte Carlo simulations, SIMD boosts throughput by 4–10×

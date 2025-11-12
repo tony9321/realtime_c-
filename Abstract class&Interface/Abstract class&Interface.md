@@ -41,3 +41,4 @@ Circle.draw() #works
 | ------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **Abstract class** | Class with pure virtual (`=0`) function(s). Cannot instantiate. | Class inheriting from `abc.ABC`, with `@abstractmethod`. Cannot instantiate. |
 | **Interface**      | Abstract class with only pure virtuals.                         | Implemented via abstract base classes; no distinct keyword.                  |
+

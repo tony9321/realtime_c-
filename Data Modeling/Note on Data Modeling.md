@@ -104,3 +104,5 @@ need fast sequential writes and efficient range queries(aggregasion) by symbol a
 
 ### Think like sql compiler(Relational Algebra)
 Push down projection, selection etc. (greek letters) theory side
+
+>For pipelines — mention you’d use **C++ for fast ingestion / preprocessing**, **Python for orchestration / research scripts**

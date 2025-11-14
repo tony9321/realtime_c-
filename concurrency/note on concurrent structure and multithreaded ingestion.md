@@ -76,4 +76,5 @@ some lock free structure that's even faster:
 .  For market data ingestion, I’d use a bounded lock-free ring buffer with cache-line alignment         and per-thread batching to sustain millions of events per second while avoiding false sharing.
    Event queue throughput is the system’s ability to move and process millions of events per second. You optimize it using bounded, lock-free ring buffers, cache alignment, batching, and per-core pinning. That keeps latency predictable and avoids contention under market spikes. “CAS is the atomic primitive that lets us implement lock-free structures.  
    Lock-free algorithms rely on CAS loops instead of mutexes, which gives low-latency and high parallelism — perfect for high-throughput systems.  
-   The subtle danger is the ABA problem, where a value changes A→B→A and CAS incorrectly succeeds; we avoid it with tagged pointers, hazard pointers, or version counters.”
+   The subtle danger is the ABA problem, where a value changes A→B→A and CAS incorrectly succeeds; we avoid it with tagged pointers, hazard pointers, or version counters.” 
+   If they mention “atomicity,” talk about **std::atomic + memory models**, then relate it to **Python’s GIL**.

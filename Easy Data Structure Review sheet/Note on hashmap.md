@@ -32,3 +32,4 @@ rehash when load factor 1.0–2.0
 - tiny ptr hash map, less ptr overhead and better cache locality, not just bound by load factor and n, and probing now
 
 > I prefer modern flat maps like absl::flat_hash_map or folly::F14FastMap for performance-critical paths. They use open addressing with Robin Hood probing, control bytes, and SIMD to probe multiple slots at once. That yields much better cache locality and predictable performance under high load compared to traditional std::unordered_map
+> When they ask about hash maps — say _“In C++ I’d use unordered_map, in Python that’d correspond to dict — both are hash tables under the hood, but Python’s implementation uses open addressing with perturbation.”_

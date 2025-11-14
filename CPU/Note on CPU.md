@@ -1,3 +1,4 @@
+#Voloridge 
 ## CPU Pipeline
 CPU doesn't execute one instruction at a time, it pipelines them like an assembly line
 1. `Fetch` the next instruction from mem
@@ -61,10 +62,10 @@ Counter c1, c2; // each on its own cache line(separate 64byte boundary)
 ```
 w/out `alignas(64)`, both `c1` and `c2` might sit in one line. When thread 1 updates `c1.x`, it invalidates thread 2’s cache line for `c2.x`, causing massive slowdowns — called `false sharing`
 
-`Temporal locality` is like when I use this once I might use it again soon
+`Temporal locality` is when I use this once I might use it again soon
 
 ## SIMD(Single Instruction, Multiple Data)
-Replying more on compiler instead of our code
+Relying more on compiler instead of our code
 CPU instructions that operate on many numbers at once (like add 4 floats at once)
 `_mm_add_ps` or compiler vectorization(`-O3, -march=native`)
 ```cpp

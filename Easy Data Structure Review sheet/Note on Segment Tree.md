@@ -1,3 +1,4 @@
+#Voloridge 
 less used in real world
 Dynamic, binary tree
 - Range queries: (like min/max/sum on `[l, r]`) `O(log n)`

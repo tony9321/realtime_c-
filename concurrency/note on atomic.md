@@ -1,3 +1,4 @@
+#Voloridge 
 lock free thread safe operations under `std::atomic`
 ```cpp
 #include <atomic>
@@ -48,7 +49,7 @@ There's also `multiprocessing.Value`or `multiprocessing.Array`for atomic-like sh
 
 | Concept    | C++                                                                           | Python                                                                                   |
 | ---------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Atomic** | Explicit type: `std::atomic<T>`. Lock-free, low-level, controls memory order. | Implicit via GIL; limited. Use `threading.Lock` or `multiprocessing` for real atomicity. |
+| **Atomic** | Explicit type: `std::atomic<T>`. Lock free, low-level, controls memory order. | Implicit via GIL; limited. Use `threading.Lock` or `multiprocessing` for real atomicity. |
 
 
 

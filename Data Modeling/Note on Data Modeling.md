@@ -1,3 +1,4 @@
+#Voloridge 
 ## Normalization
 Prefer Denormalized since speed matters more than memory usage
 ### Normalized

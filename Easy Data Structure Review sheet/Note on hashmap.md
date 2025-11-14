@@ -1,3 +1,4 @@
+#Voloridge 
 Order book lookups (price → level)
 ## Open addressing 
 - All entires live in arr, if bucket is full probe the next empty one(better cache locality)
@@ -29,3 +30,5 @@ rehash when load factor 1.0–2.0
 - Robin Hood hashing: evens out probe lengths by stealing closer slots
 - Swiss Table / Abseil’s `flat_hash_map`: stores small control bytes for occupancy, enabling SIMD lookups (16 probes at once! cmp 16 control bytes in parallel) , store (k, v, staus)
 - tiny ptr hash map, less ptr overhead and better cache locality, not just bound by load factor and n, and probing now
+
+> I prefer modern flat maps like absl::flat_hash_map or folly::F14FastMap for performance-critical paths. They use open addressing with Robin Hood probing, control bytes, and SIMD to probe multiple slots at once. That yields much better cache locality and predictable performance under high load compared to traditional std::unordered_map
